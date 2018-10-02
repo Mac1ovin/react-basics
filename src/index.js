@@ -4,12 +4,15 @@ import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
-Hero = React.createClass({
+const Hero = require("create-react-class");
+
+var Component = createReactClass({
   getInitialState: function() {
     return {
       count: 0
     };
   },
+
   handleClick: function() {
     this.setState({ count: this.state.count + 1 });
   },
@@ -36,13 +39,11 @@ ReactDOM.render(
       title="React"
       subtitle="Либа для интерфейсов"
       imageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/320px-React-icon.svg.png"
-      count="0"
     />
     <Hero
       title="Angular"
       subtitle="Какой-то фреймворк"
       imageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/240px-Angular_full_color_logo.svg.png"
-      count="0"
     />
   </div>,
   document.getElementById("root")
