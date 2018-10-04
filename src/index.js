@@ -4,34 +4,38 @@ import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
-const Hero = require("create-react-class");
+// const Hero = require("create-react-class");
 
-var Component = createReactClass({
-  getInitialState: function() {
-    return {
-      count: 0
-    };
-  },
+const ImageCounter = function(props) {
+  return (
+    <div className="image-count">
+      <div className="count">{props.count}</div>
+      <img height="150px" src={props.imageUrl} onClick={props.onCount} />
+    </div>
+  );
+};
 
-  handleClick: function() {
+class Hero extends React.Component {
+  state = { count: 0 };
+
+  handleClick = () => {
     this.setState({ count: this.state.count + 1 });
-  },
+  };
 
-  render: function() {
+  render() {
     return (
       <div className="container">
-        <div className="count">{this.state.count}</div>
-        <img
-          height="150px"
-          src={this.props.imageUrl}
-          onClick={this.handleClick}
+        <ImageCounter
+          imageUrl={this.props.imageUrl}
+          count={this.state.count}
+          onCount={this.handleClick}
         />
         <h1>{this.props.title}</h1>
         <p>{this.props.subtitle}</p>
       </div>
     );
   }
-});
+}
 
 ReactDOM.render(
   <div>
