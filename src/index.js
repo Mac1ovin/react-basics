@@ -37,19 +37,54 @@ class Hero extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <div>
-    <Hero
-      title="React"
-      subtitle="Либа для интерфейсов"
-      imageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/320px-React-icon.svg.png"
-    />
-    <Hero
-      title="Angular"
-      subtitle="Какой-то фреймворк"
-      imageUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/240px-Angular_full_color_logo.svg.png"
-    />
-  </div>,
-  document.getElementById("root")
-);
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        {this.props.heroes.map(function(hero) {
+          return (
+            <Hero
+              key={hero.id}
+              title={hero.title}
+              subtitle={hero.subtitle}
+              imageUrl={hero.imageUrl}
+            />
+          );
+        })}
+      </div>
+    );
+  }
+}
+
+const data = [
+  {
+    id: 1,
+    title: "React",
+    subtitle: "Либа для интерфейсов",
+    imageUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/320px-React-icon.svg.png"
+  },
+  {
+    id: 2,
+    title: "Angular",
+    subtitle: "Какой-то фреймворк",
+    imageUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/240px-Angular_full_color_logo.svg.png"
+  },
+  {
+    id: 3,
+    title: "Ember",
+    subtitle: "амбициозный фреймворк",
+    imageUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/2/27/Ember-logo.png"
+  },
+  {
+    id: 4,
+    title: "Vue",
+    subtitle: "Прогрессивный фреймворк",
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png"
+  }
+];
+
+ReactDOM.render(<App heroes="{data}" />, document.getElementById("root"));
 registerServiceWorker();
