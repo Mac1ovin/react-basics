@@ -1,16 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
-
-// const Hero = require("create-react-class");
 
 const ImageCounter = function(props) {
   return (
     <div className="image-count">
       <div className="count">{props.count}</div>
-      <img height="150px" src={props.imageUrl} onClick={props.onCount} />
+      <img src={props.imageUrl} onClick={props.onCount} />
     </div>
   );
 };
@@ -37,24 +34,17 @@ class Hero extends React.Component {
   }
 }
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        {this.props.heroes.map(function(hero) {
-          return (
-            <Hero
-              key={hero.id}
-              title={hero.title}
-              subtitle={hero.subtitle}
-              imageUrl={hero.imageUrl}
-            />
-          );
-        })}
-      </div>
-    );
-  }
-}
+const App = ({ heroes }) =>
+  heroes.map(hero => (
+    <div>
+      <Hero
+        key={hero.id}
+        title={hero.title}
+        subtitle={hero.subtitle}
+        imageUrl={hero.imageUrl}
+      />
+    </div>
+  ));
 
 const data = [
   {
@@ -74,7 +64,7 @@ const data = [
   {
     id: 3,
     title: "Ember",
-    subtitle: "амбициозный фреймворк",
+    subtitle: "Aмбициозный фреймворк",
     imageUrl:
       "https://upload.wikimedia.org/wikipedia/commons/2/27/Ember-logo.png"
   },
@@ -86,5 +76,6 @@ const data = [
   }
 ];
 
-ReactDOM.render(<App heroes="{data}" />, document.getElementById("root"));
+ReactDOM.render(<App heroes={data} />, document.getElementById("root"));
+
 registerServiceWorker();
